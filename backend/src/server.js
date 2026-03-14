@@ -219,5 +219,11 @@ app.post("/api/auth/login", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Backend server running on http://localhost:${port}`);
+  const renderUrl = process.env.RENDER_EXTERNAL_URL;
+  if (renderUrl) {
+    console.log(`\n🎉 SUCCESS! Your backend is live and publicly accessible at:\n👉 http://${process.env.RENDER_EXTERNAL_URL}\n`);
+    console.log(`(Paste this link into your frontend's environment variables)`);
+  } else {
+    console.log(`Backend server running locally on http://localhost:${port}`);
+  }
 });
